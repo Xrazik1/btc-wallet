@@ -1,0 +1,32 @@
+services:
+  client:
+    build: .
+    container_name: client
+    command: ruby app/client/main.rb
+    volumes:
+      - .:/app
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    restart: no
+
+  cron:
+    build: .
+    container_name: cron
+    volumes:
+      - .:/app
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    stdin_open: true
+    tty: true
+    command: ruby app/cron/main.rb
+    restart: on-failure

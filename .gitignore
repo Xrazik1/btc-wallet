@@ -1,0 +1,8 @@
+.idea
+
+.env
+.tmp
+./app/db
+
+./app/db/address.txt
+./app/db/private-key.txt
